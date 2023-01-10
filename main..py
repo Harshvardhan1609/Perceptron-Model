@@ -12,6 +12,7 @@ from sklearn.metrics import plot_confusion_matrix
 
 
 st.title("Perceptron Model")
+st.sidebar.title("Values to Vary")
 name = st.text_input("Name of database ", "diabetes")
 
 my_data = pd.read_csv(f'{name}.csv')
@@ -44,7 +45,12 @@ fig = px.density_heatmap(my_data)
 con = px.box(my_data)
 cons  = px.imshow(cm)
 consts  = px.scatter(my_data)
-tab1, tab2 , tab3 , tab4 = st.tabs(["HeatMap" , "Box Plot" , "Confusion Matrix" , "Scatter PLot"])
+consts2  = px.line(my_data)
+consts3  = px.strip(my_data)
+
+
+
+tab1, tab2 , tab3 , tab4 , tab5 , tab6 = st.tabs(["HeatMap" , "Box Plot" , "Confusion Matrix" , "Scatter PLot" , "line chart" , "Strip Plot"])
 with tab1:
     st.plotly_chart(fig,theme="streamlit",use_container_width=True)
 with tab2:
@@ -53,4 +59,8 @@ with tab3:
     st.plotly_chart(cons,theme="streamlit",use_container_width=True)
 with tab4:
     st.plotly_chart(consts,theme="streamlit",use_container_width=True)
+with tab5:
+    st.plotly_chart(consts2,theme="streamlit",use_container_width=True)
+with tab6:
+    st.plotly_chart(consts3,theme="streamlit",use_container_width=True)
 
